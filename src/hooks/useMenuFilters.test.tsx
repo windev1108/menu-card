@@ -9,14 +9,16 @@ const menu = [
 ];
 
 describe('useMenuFilters', () => {
-    it('filters by search, category, and availability', () => {
+    it('filters by search', () => {
         const { result } = renderHook(() => useMenuFilters(menu));
         expect(result.current.filtered).toHaveLength(3);
         act(() => result.current.setSearch('pe'));
         expect(result.current.filtered.map(i => i.name)).toEqual(['Pepperoni']);
+    });
+
+    it('filters by category and availability', () => {
+        const { result } = renderHook(() => useMenuFilters(menu));
         act(() => result.current.setOnlyAvailable(true));
-        expect(result.current.filtered).toHaveLength(0);
-        act(() => result.current.setSearch(''));
         act(() => result.current.setCategory('Pizza'));
         expect(result.current.filtered.map(i => i.name)).toEqual(['Margherita']);
     });

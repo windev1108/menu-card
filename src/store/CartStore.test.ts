@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { useBaseCartStore } from './CartStore';
 
 const itemA = { id: 1, name: 'A', category: 'Cat', price: 10, available: true, image: '' };
@@ -6,6 +6,10 @@ const itemB = { id: 2, name: 'B', category: 'Cat', price: 5, available: true, im
 
 describe('CartStore', () => {
     beforeEach(() => {
+        useBaseCartStore.setState({ items: [] });
+    });
+
+    afterEach(() => {
         useBaseCartStore.setState({ items: [] });
     });
 
