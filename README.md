@@ -1,49 +1,74 @@
 # Menu Card
 
-A small React + Vite app showing a restaurant menu with a shopping cart.
+A small React + Vite app that displays a restaurant menu with filtering and a shopping cart.
 
-## Tech
-- React 19, TypeScript
-- Zustand for state management
-- Vite
-- Vitest + React Testing Library for tests
+## Tech Stack
+- React 19 + TypeScript
+- Zustand (state) with selector helpers
+- Vite (build/dev)
+- Vitest + React Testing Library (tests)
+- Tailwind (via `@tailwindcss/vite`)
 
-## Setup
-```bash
-# from this folder
-pnpm i   # or: npm i / bun i / yarn
-```
+## Features
+- Search, category, and availability filters
+- Cart add/increase/decrease/remove
+- Async menu loading with error handling
+- Accessible UI (semantic regions, labeled controls, live regions)
 
-## Run Dev Server
-```bash
-pnpm dev
-```
-
-## Build
-```bash
-pnpm build
-```
-
-## Test
-```bash
-pnpm test        # watch mode
-pnpm test:run    # single run
-```
-
-## Structure
+## Project Structure
 ```
 src/
-  components/    # UI components
-  store/         # Zustand stores + selectors
-  types/         # shared types
-  mock/          # mock data
+  components/        UI components (MenuList, Cart, Filter, etc.)
+  hooks/             Reusable hooks (useMenuData, useMenuFilters)
+  store/             Zustand stores + selectors (CartStore, MenuStore)
+  types/             Shared types
+  mock/              Mock data (menu.json)
 ```
 
-## Accessibility
-- Inputs have labels and proper roles
-- Live regions for loading and cart updates
-- Semantic regions: header, main, section, aside
+## Getting Started
+```bash
+# install deps (choose one)
+pnpm i   # or: npm i / bun i / yarn
 
-## Notes
-- Filtering logic is in `useMenuStore` via `selectFilteredMenu` selector.
-- Cart totals are derived with `useMemo` in `Cart`.
+# start dev server
+pnpm dev
+
+# type-check + build
+pnpm build
+
+# preview production build
+pnpm preview
+```
+
+## Testing
+Configured with jsdom and jest-dom matchers.
+```bash
+pnpm test        # watch mode
+pnpm test:run    # single run (CI)
+```
+
+## Key Implementation Notes
+- Data loading is encapsulated in `hooks/useMenuData`.
+- Filtering UI state/derivations live in `hooks/useMenuFilters`.
+- Store-based filtering example in `store/MenuStore` via `selectFilteredMenu`.
+- Reusable status components in `components/ui/Status`.
+
+## Accessibility
+- Inputs use associated labels or `aria-label`/`sr-only` text
+- Semantic regions: `header`, `main`, `section`, `aside`
+- Live regions for loading/errors and empty states
+
+## Scripts Reference
+```json
+{
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "preview": "vite preview",
+  "test": "vitest --config vitest.config.ts",
+  "test:run": "vitest run --config vitest.config.ts",
+  "test:ui": "vitest --ui --config vitest.config.ts"
+}
+```
+
+## License
+MIT
