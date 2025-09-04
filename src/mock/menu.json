@@ -1,0 +1,7 @@
+[
+  {"id":1,"name":"Beef Bulgogi Rice","category": "Main", "price":85000,"available":true,"image":"/vite.svg"},
+  {"id":2,"name":"Chicken Teriyaki Bowl","category": "Main","price":78000,"available":true,"image":"/vite.svg"},
+  {"id":3,"name":"Miso Soup","category": "Side","price":18000,"available":true,"image":"/vite.svg"},
+  {"id":4,"name":"Green Tea","category": "Beverage","price":15000,"available":false,"image":"/vite.svg"},
+  {"id":5,"name":"Mango Pudding","category": "Desesert","price":22000,"available":true,"image":"/vite.svg"}
+]
